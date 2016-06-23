@@ -1,0 +1,49 @@
+Managing Licenses in a Go project
+
+23 June 2016
+
+Fabio Rapposelli
+Staff Engineer 2, VMware
+fabio@vmware.com
+@fabiorapposelli
+
+* whoami
+
+- @ VMware > 3 years
+- Part of the Cloud Native Apps BU
+- Working on Project Cello, built entirely in Go.
+- Built the CI/CD infrastructure for the Cloud Native Apps BU
+
+* Static binaries for everyone
+
+.image oprah.jpg _ 700
+
+* Vendoring dependencies
+
+- Go 1.5 introduced GO15VENDOREXPERIMENT
+- Anything stored under vendor/ is considered a vendored dependency
+- Lots of ecosystem tools built to manage those dependencies (we like gvt)
+- Go 1.6 made it 100% official, that is the golang-supported way to vendor dependencies.
+
+* Dependencies Sprawl
+
+.image sprawl.jpg _ 700
+
+* Viral licenses are potentially harmful for Go projects
+
+- Importing a plain GPL-licensed module into a Go project will make the whole thing GPL
+- Some GPL/LGPL licensed Go libraries have added special clauses for static binaries, but they are yet to be proven.
+- Managing dependencies carefully is a must.
+
+* Introducing WWHRD?
+
+.link https://github.com/frapposelli/wwhrd
+- WWHRD? Means “What Would Henry Rollins Do?”
+- Checks your vendored dependencies against a specific set of whitelisted/blacklisted licenses.
+- You can use it in your CI, and fail the build if a blacklisted licenses creeps into the codebase.
+- Get it now!
+  go get github.com/frapposelli/wwhrd
+
+.image wwhrd.png _ 150
+
+* Demo time! Excellent!
